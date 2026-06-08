@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { AnimatePresence, motion } from 'motion/react'
 import { X, MessageSquareText, ClockFading, Rotate3D, Box, Plus } from 'lucide-react'
-import Image from 'next/image'
 
 const Card = () => {
   const [open, setOpen] = useState(true);
