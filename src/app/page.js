@@ -8,6 +8,7 @@ export default function Home() {
     <div className="flex flex-col">
       <Link href='/Hoverbutton'>Hover button</Link>
       <Link href='/Cardhover'>Card Hover</Link>
+      <Link href='/MotionHook'>MotionHook</Link>
     </div>
   );
 }
