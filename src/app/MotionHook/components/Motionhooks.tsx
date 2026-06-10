@@ -1,16 +1,52 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { IconRocket } from "@tabler/icons-react";
 import Image from "next/image";
+import { div } from "motion/react-client";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
 
 const Motionhooks = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-neutral-900">
-      <div className="flex flex-col gap-10 ">
-        {}
+    <div className="flex min-h-screen items-center justify-center bg-neutral-900 text-white">
+      <div className="mx-auto max-w-4xl flex flex-col gap-10 py-40">
+        {features.map((feature,idx)=>(
+          <Card key={feature.title} feature={feature} />
+        ))}
       </div>
     </div>
   );
+};
+
+const Card = ({feature}:{feature: Feature})=>{
+  const ref = useRef<HTMLDivElement>(null);
+  const {scrollYProgress} = useScroll({
+    target:ref,
+    offset:["start end","end start"]
+  });
+
+  const translateContent = useTransform(scrollYProgress,[0,1],[-200,200]);
+  const opacityContent = useTransform(scrollYProgress,[0,0.5,1],[0,1,0])
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log("changed value", latest);
+  });
+
+  return(
+  <div 
+  ref={ref}
+  key={feature.title} className="grid grid-cols-2 items-cen gap-20 py-80">
+      <div className="flex flex-col gap-5">
+        {feature.icon}
+        <h2 className="text-4xl font-bold">{feature.title}</h2>
+        <p className="text-neutral-400 text-lg">{feature.description}</p>
+      </div>
+    <motion.div
+    style={{
+      y: translateContent, 
+      opacity: opacityContent,
+    }}>{feature.content}</motion.div>
+  </div>
+  )
 };
 
 type Feature = {
@@ -36,6 +72,21 @@ const features = [
           className="rounded-lg"
         />
       </div>
+    ),
+  },
+  {
+    icon: <IconRocket className="h-8 w-8 text-neutral-200" />,
+    title: "Replicate great Art",
+    description:
+      "Generate the painting of renowned artists, like Van Gogh or Monet or Majnu bhai.",
+    content: (
+      <Image
+        src="https://assets.aceternity.com/pro/art.jpeg"
+        alt="car"
+        height="500"
+        width="500"
+        className="rounded-lg"
+      />
     ),
   },
   {
