@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { IconRocket } from "@tabler/icons-react";
 import Image from "next/image";
 import { div } from "motion/react-client";
-import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { motion, useMotionTemplate, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 
 const Motionhooks = () => {
   return (
@@ -24,8 +24,13 @@ const Card = ({feature}:{feature: Feature})=>{
     offset:["start end","end start"]
   });
 
-  const translateContent = useTransform(scrollYProgress,[0,1],[-200,200]);
-  const opacityContent = useTransform(scrollYProgress,[0,0.5,1],[0,1,0])
+  const translateContent = useSpring(useTransform(scrollYProgress,[0,1],[200,-300]),{
+    stiffness:100,
+    damping:30,
+    mass:1
+  });
+  const opacityContent = useTransform(scrollYProgress,[0,0.5,1],[0,1,0]);
+  const blur = useTransform(scrollYProgress,[0,0.5,1],[10,0,10]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log("changed value", latest);
@@ -35,11 +40,15 @@ const Card = ({feature}:{feature: Feature})=>{
   <div 
   ref={ref}
   key={feature.title} className="grid grid-cols-2 items-cen gap-20 py-80">
-      <div className="flex flex-col gap-5">
+      <motion.div 
+      style={{
+        filter:useMotionTemplate`blur(${blur}px)`
+      }}
+      className="flex flex-col gap-5">
         {feature.icon}
         <h2 className="text-4xl font-bold">{feature.title}</h2>
         <p className="text-neutral-400 text-lg">{feature.description}</p>
-      </div>
+      </motion.div>
     <motion.div
     style={{
       y: translateContent, 
