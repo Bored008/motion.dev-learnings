@@ -1,6 +1,7 @@
 "use client";
 import React from 'react'
 import { motion } from "motion/react"
+import Link from 'next/link';
 
 const page = () => {
   return (
@@ -10,6 +11,7 @@ const page = () => {
       backgroundRepeat:"repeat"
     }}
     >
+      <Link href={"/"} className="absolute top-10 left-10 text-white bg-black px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-colors backdrop-blur-md">←  Back to Home</Link>
       <motion.button
       whileHover={{
         // rotateX:20,

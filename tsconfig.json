@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2017",
+        "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "lib": [
       "dom",
       "dom.iterable",
@@ -30,7 +34,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/AnimationSequence/page.js"  ],
   "exclude": [
     "node_modules"
   ]

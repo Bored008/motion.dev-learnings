@@ -11,6 +11,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import Link from "next/link";
 
 const Motionhooks = () => {
   const [bgColor, setBgColor] = useState("#232323");
@@ -19,11 +20,15 @@ const Motionhooks = () => {
 
   return (
     <motion.div
-      style={{
+      animate={{
         backgroundColor: bgColor,
+      }}
+      transition={{
+        duration: 0.5,
       }}
       className="flex min-h-screen items-center justify-center bg-neutral-900 text-white"
     >
+      <Link href={"/"} className="absolute top-10 left-10 bg-black px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-colors backdrop-blur-md">←  Back to Home</Link>
       <div className="mx-auto flex max-w-4xl flex-col gap-10 py-40">
         {features.map((feature, idx) => (
           <Card
@@ -62,7 +67,11 @@ const Card = ({
     },
   );
   const opacityContent = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
-  const blur = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.8, 1], [10, 5, 0, 5, 10]);
+  const blur = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.5, 0.8, 1],
+    [10, 5, 0, 5, 10],
+  );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest > 0.4 && latest < 0.6) {

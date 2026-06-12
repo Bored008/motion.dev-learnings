@@ -9,6 +9,7 @@ export default function Home() {
       <Link href='/Hoverbutton'>Hover button</Link>
       <Link href='/Cardhover'>Card Hover</Link>
       <Link href='/MotionHook'>MotionHook</Link>
+      <Link href={'/AnimationSequence'}>AnimationSequence</Link>
     </div>
   );
 }
