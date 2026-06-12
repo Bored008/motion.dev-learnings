@@ -4,9 +4,6 @@ import React, { useEffect } from "react";
 
 const AnimatedText = () => {
   const [scope, animate] = useAnimate();
-  useEffect(() => {
-    startAnimating();
-  }, []);
 
   const startAnimating = () => {
     animate(
@@ -28,8 +25,16 @@ const AnimatedText = () => {
   return (
     <div
       ref={scope}
-      className="mx-auto flex max-w-4xl items-center justify-center text-4xl font-bold text-white "
+      className="mx-auto flex max-w-4xl flex-wrap content-center justify-center text-4xl font-bold text-white"
     >
+      <button
+        onClick={() => {
+          startAnimating();
+        }}
+        className="rounded-lg bg-neutral-500 px-4 py-2 cursor-pointer active:scale-110"
+      >
+        Thought
+      </button>
       {/* <motion.span
         style={{
           opacity: 0,
