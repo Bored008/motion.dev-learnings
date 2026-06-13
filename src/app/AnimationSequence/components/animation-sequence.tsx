@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion, useAnimate } from "motion/react";
+import { div } from "motion/react-client";
 
 const AnimationSequence = () => {
   const [scope, animate] = useAnimate();
@@ -20,6 +21,7 @@ const AnimationSequence = () => {
       {
         borderRadius: "1000px",
         width: "5rem",
+        backgroundImage: "linear-gradient(to right, #00ff99, #00ccff)",
       },
       {
         duration: 0.3,
@@ -52,9 +54,22 @@ const AnimationSequence = () => {
         <span className="text">Purchase Now ($169)</span>
       </motion.button>
       <motion.div
-        style={{ opacity: 0, scale: 0 }}
-        className="spinning-circle absolute inset-0 m-auto h-20 w-20 rounded-full bg-green-500"
+        style={{
+          opacity: 0,
+          scale: 0,
+          backgroundImage: "linear-gradient(to right, #00ff99, #00ccff)",
+        }}
+        className="spinning-circle absolute inset-0 m-auto h-20 w-20 rounded-full"
       ></motion.div>
+      <motion.svg
+      fill="none"
+      viewBox="0,0,24,24"
+      stroke="#FFFFFF"
+      strokeWidth={3}
+      className="ckeck-icon h-8 w-8 absolute inset-0 m-auto z-50 pointer-events-none"
+      >
+        <motion.path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></motion.path>
+      </motion.svg>
     </div>
   );
 };
