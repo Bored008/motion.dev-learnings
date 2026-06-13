@@ -7,6 +7,27 @@ const AnimationSequence = () => {
   const [scope, animate] = useAnimate();
   const startAnimating = async () => {
     animate(
+      ".loader",
+      {
+        opacity: 1,
+        width: "2rem",
+      },
+      {
+        duration: 0.1,
+      },
+    );
+
+    await animate(
+      ".loader",
+      {
+        rotate: 360 * 4,
+      },
+      {
+        duration: 2,
+      },
+    );
+
+    animate(
       ".text",
       {
         opacity: 0,
@@ -51,12 +72,14 @@ const AnimationSequence = () => {
     );
 
     animate(
-      ".check-icon-path",{
-        pathLength:1,
-      },{
-        duration:0.3,
-      }
-    )
+      ".check-icon-path",
+      {
+        pathLength: 1,
+      },
+      {
+        duration: 0.3,
+      },
+    );
   };
   return (
     <div
@@ -68,26 +91,28 @@ const AnimationSequence = () => {
         style={{
           width: "30rem",
         }}
-        className="via-voilet-600 h-20 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 font-medium text-white"
+        className="via-voilet-600 h-20 flex justify-center items-center rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 font-medium text-white"
       >
+        <motion.svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="loader h-5 w-5 text-white"
+          initial={{
+            width: "0rem",
+          }}
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 3a9 9 0 1 0 9 9" />
+        </motion.svg>
         <span className="text">Purchase Now ($169)</span>
       </motion.button>
-      <motion.svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="loader h-5 w-5 text-white"
-      initial={{
-        width:"0rem",
-      }}
-      >
 
-      </motion.svg>
       <motion.div
         style={{
           opacity: 0,
@@ -107,7 +132,7 @@ const AnimationSequence = () => {
         }}
       >
         <motion.path
-        className="check-icon-path"
+          className="check-icon-path"
           initial={{
             pathLength: 0,
           }}
