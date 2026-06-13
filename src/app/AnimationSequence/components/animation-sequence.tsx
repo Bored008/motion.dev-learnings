@@ -72,6 +72,22 @@ const AnimationSequence = () => {
       >
         <span className="text">Purchase Now ($169)</span>
       </motion.button>
+      <motion.svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="loader h-5 w-5 text-white"
+      initial={{
+        width:"0rem",
+      }}
+      >
+
+      </motion.svg>
       <motion.div
         style={{
           opacity: 0,
