@@ -1,10 +1,14 @@
 import React from 'react'
 import AnimatedText from './components/animated-text'
+import AnimationSequence from './components/animation-sequence'
 
 const page = () => {
   return (
-    <div className='bg-neutral-900 min-h-screen text-white mx-auto flex flex-center justify-center'>
-        <AnimatedText />
+    <div> 
+        <div className='hidden'>
+            <AnimatedText />
+        </div>
+        <AnimationSequence />
     </div>
   )
 }

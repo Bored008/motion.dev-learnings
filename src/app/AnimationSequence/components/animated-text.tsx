@@ -25,7 +25,7 @@ const AnimatedText = () => {
   return (
     <div
       ref={scope}
-      className="mx-auto flex max-w-4xl flex-wrap content-center justify-center text-4xl font-bold text-white"
+      className="bg-neutral-900 min-h-screen mx-auto flex max-w-4xl flex-wrap content-center justify-center text-4xl font-bold text-white"
     >
       <button
         onClick={() => {
