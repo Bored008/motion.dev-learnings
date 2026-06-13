@@ -38,6 +38,25 @@ const AnimationSequence = () => {
         duration: 0.5,
       },
     );
+
+    animate(
+      ".check-icon",
+      {
+        opacity: 1,
+        scale: [0, 1.2, 0.8, 1],
+      },
+      {
+        duration: 0.5,
+      },
+    );
+
+    animate(
+      ".check-icon-path",{
+        pathLength:1,
+      },{
+        duration:0.3,
+      }
+    )
   };
   return (
     <div
@@ -62,13 +81,29 @@ const AnimationSequence = () => {
         className="spinning-circle absolute inset-0 m-auto h-20 w-20 rounded-full"
       ></motion.div>
       <motion.svg
-      fill="none"
-      viewBox="0,0,24,24"
-      stroke="#FFFFFF"
-      strokeWidth={3}
-      className="ckeck-icon h-8 w-8 absolute inset-0 m-auto z-50 pointer-events-none"
+        fill="none"
+        viewBox="0,0,24,24"
+        stroke="#FFFFFF"
+        strokeWidth={3}
+        className="check-icon pointer-events-none absolute inset-0 z-50 m-auto h-8 w-8"
+        style={{
+          opacity: 0,
+        }}
       >
-        <motion.path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></motion.path>
+        <motion.path
+        className="check-icon-path"
+          initial={{
+            pathLength: 0,
+          }}
+          transition={{
+            duration: 0.3,
+            type: "tween",
+            ease: "easeOut",
+          }}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 13l4 4L19 7"
+        ></motion.path>
       </motion.svg>
     </div>
   );
